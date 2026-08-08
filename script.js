@@ -435,12 +435,9 @@ function mwIcon(key, size=26){
       <path d="M13 13.5l-3.4 5.6h2.7l-1.7 4.6 4.6-6.2h-2.7z" fill="url(#g-bolt)"/>`,
     fog: `<defs><linearGradient id="g-fog" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#C8B9CE"/><stop offset="100%" stop-color="#9A899E"/></linearGradient></defs>
       <g stroke="url(#g-fog)" stroke-width="2.1" stroke-linecap="round"><line x1="3.5" y1="8" x2="20.5" y2="8"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="3.5" y1="16" x2="20.5" y2="16"/></g>`,
-    rainbow: `<defs><linearGradient id="g-bow" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#F3A6C8"/><stop offset="50%" stop-color="#F4C98A"/><stop offset="100%" stop-color="#9FD3C7"/></linearGradient></defs>
-      <path d="M3 16a9 9 0 0 1 18 0" fill="none" stroke="url(#g-bow)" stroke-width="2.1" stroke-linecap="round"/>
-      <path d="M6.3 16a5.7 5.7 0 0 1 11.4 0" fill="none" stroke="url(#g-bow)" stroke-width="2.1" stroke-linecap="round" opacity="0.75"/>`,
-    snow: `<defs><linearGradient id="g-snow" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#D7E7F5"/><stop offset="100%" stop-color="#8FB0D1"/></linearGradient></defs>
-      <g fill="none" stroke="url(#g-snow)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="12.00" y1="12.00" x2="21.20" y2="12.00"/>
+    rainbow: `<path d="M3 16a9 9 0 0 1 18 0" fill="none" stroke="#E39BC0" stroke-width="2.1" stroke-linecap="round"/>
+      <path d="M6.3 16a5.7 5.7 0 0 1 11.4 0" fill="none" stroke="#E39BC0" stroke-width="2.1" stroke-linecap="round" opacity="0.75"/>`,
+    snow: `<g fill="none" stroke="#9FBEDD" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
         <line x1="12.00" y1="12.00" x2="16.60" y2="4.03"/>
         <line x1="12.00" y1="12.00" x2="7.40" y2="4.03"/>
         <line x1="12.00" y1="12.00" x2="2.80" y2="12.00"/>
