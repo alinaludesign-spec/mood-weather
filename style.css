@@ -25,7 +25,10 @@
     width:100%; max-width:380px; border-radius:36px; overflow:hidden;
     box-shadow:0 0 0 10px #2B2635, 0 0 0 12px #47415a; position:relative; height:812px; isolation:isolate;
   }
-  @media (max-width:420px){ .mw-phone{border-radius:0;box-shadow:none;} .mw-root{padding:0;} }
+  @media (max-width:420px){
+  .mw-phone{border-radius:0;box-shadow:none;height:100dvh;}
+  .mw-root{padding:0;}
+}
 
   .mw-bg{ position:absolute; inset:0; z-index:0;
     background:
