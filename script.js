@@ -458,6 +458,36 @@ const state = {
   lang:'en', lastDetailEntry:null, lastDetailDate:null
 };
 
+const STORAGE_KEY = 'moodWeatherData';
+
+function mwSaveState(){
+  try{
+    const data = {
+      entries: state.entries.map(e => ({...e, date: e.date.toISOString()})),
+      lang: state.lang,
+      reminderOn: state.reminderOn
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  }catch(err){
+    console.error('Mood Weather: failed to save to localStorage', err);
+  }
+}
+
+function mwLoadState(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return;
+    const data = JSON.parse(raw);
+    if(Array.isArray(data.entries)){
+      state.entries = data.entries.map(e => ({...e, date: new Date(e.date)}));
+    }
+    if(data.lang) state.lang = data.lang;
+    if(typeof data.reminderOn === 'boolean') state.reminderOn = data.reminderOn;
+  }catch(err){
+    console.error('Mood Weather: failed to load from localStorage', err);
+  }
+}
+
 function mwGuessTags(text){
   if(!text) return [];
   const lower = text.toLowerCase();
@@ -519,7 +549,7 @@ function mwSelectLang(lang){
 }
 
 function mwSetLang(lang){
-  state.lang = lang;
+  state.lang = lang; mwSaveState();
   document.getElementById('mw-html').lang = lang;
   document.getElementById('lang-current-flag').textContent = LANG_META[lang].flag;
   document.getElementById('lang-current-name').textContent = LANG_META[lang].name;
@@ -745,7 +775,7 @@ function mwSave(){
 
   if(existing){ existing.mood = mood; existing.note = note; existing.tags = tags; }
   else { state.entries.push({date:new Date(), mood, note, tags}); }
-  state.entries.sort((a,b)=>a.date-b.date);
+  state.entries.sort((a,b)=>a.date-b.date); mwSaveState();
   state.lastMood = mood;
   state.editingToday = false;
 
@@ -759,7 +789,7 @@ function mwSaveKindness(){
   const val = input.value.trim();
   if(!val) return;
   const e = todayEntry();
-  if(e) e.kindness = val;
+  if(e) e.kindness = val; mwSaveState();
   input.placeholder = t('kindnessSaved');
   input.value = '';
 }
@@ -1048,5 +1078,7 @@ if (typeof window !== 'undefined') {
 
 /* ---------- INIT ---------- */
 mwInitHeartClips();
+mwLoadState();
+mwSetLang(state.lang);
 mwMountHeart('welcome-heart', null, { flourish:false });
 requestAnimationFrame(mwBreatheLoop);
