@@ -438,6 +438,7 @@ function mwIcon(key, size=26){
     rainbow: `<path d="M3 16a9 9 0 0 1 18 0" fill="none" stroke="#E39BC0" stroke-width="2.1" stroke-linecap="round"/>
       <path d="M6.3 16a5.7 5.7 0 0 1 11.4 0" fill="none" stroke="#E39BC0" stroke-width="2.1" stroke-linecap="round" opacity="0.75"/>`,
     snow: `<g fill="none" stroke="#9FBEDD" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12.00" y1="12.00" x2="21.20" y2="12.00"/>
         <line x1="12.00" y1="12.00" x2="16.60" y2="4.03"/>
         <line x1="12.00" y1="12.00" x2="7.40" y2="4.03"/>
         <line x1="12.00" y1="12.00" x2="2.80" y2="12.00"/>
