@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" id="mw-html">
 <head>
 <meta charset="UTF-8">
@@ -13,17 +13,9 @@
 </head>
 <body>
 
-
 <div class="mw-root">
 <div class="mw-phone" id="mw-phone" data-mood="">
   <div class="mw-bg"></div>
-  <div class="mw-splash" id="mw-splash">
-    <div class="mw-splash-heart"><div class="mw-heart mw-heart-lg" id="splash-heart">
-      <div class="mw-heart-glow"></div>
-      <div class="mw-heart-clip mw-heart-lg"><div class="mw-heart-base"></div><div class="mw-heart-tint" style="opacity:.05;"></div><div class="mw-heart-inside"></div><div class="mw-heart-surface"></div></div>
-    </div></div>
-    <div class="mw-splash-title">Mood weather</div>
-  </div>
   <div class="mw-notif-banner" id="mw-notif">
     <div class="mw-nb-icon"></div>
     <div>
@@ -222,6 +214,25 @@
 </div>
 
 
+
 <script src="script.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

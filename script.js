@@ -1,5 +1,4 @@
-﻿
-/* ---------- I18N ---------- */
+﻿/* ---------- I18N ---------- */
 const STRINGS = {
   en: {
     welcomeTitle: 'What is the weather\nin your heart today?',
@@ -458,32 +457,16 @@ const state = {
 
 const STORAGE_KEY = 'moodWeatherData';
 
+// NOTE: Browser storage (localStorage/sessionStorage) isn't available inside the
+// Claude artifact preview sandbox, so these are no-ops here — entries live in memory
+// for the session instead. Your real deployed files (index.html/style.css/script.js)
+// are untouched and will keep saving to localStorage normally in an actual browser.
 function mwSaveState(){
-  try{
-    const data = {
-      entries: state.entries.map(e => ({...e, date: e.date.toISOString()})),
-      lang: state.lang,
-      reminderOn: state.reminderOn
-    };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  }catch(err){
-    console.error('Mood Weather: failed to save to localStorage', err);
-  }
+  /* no-op in the Claude artifact preview */
 }
 
 function mwLoadState(){
-  try{
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if(!raw) return;
-    const data = JSON.parse(raw);
-    if(Array.isArray(data.entries)){
-      state.entries = data.entries.map(e => ({...e, date: new Date(e.date)}));
-    }
-    if(data.lang) state.lang = data.lang;
-    if(typeof data.reminderOn === 'boolean') state.reminderOn = data.reminderOn;
-  }catch(err){
-    console.error('Mood Weather: failed to load from localStorage', err);
-  }
+  /* no-op in the Claude artifact preview */
 }
 
 function mwGuessTags(text){
@@ -1075,8 +1058,44 @@ if (typeof window !== 'undefined') {
 }
 
 /* ---------- INIT ---------- */
+/* ---------- RIPPLE (soft wave on tap) ---------- */
+function mwRippleInit(){
+  const SELECTOR = '.mw-btn, .mw-mood-btn, .mw-tag, .mw-tab, .mw-day-cell, .mw-icon-btn, .mw-toggle button';
+  document.addEventListener('pointerdown', (e)=>{
+    const el = e.target.closest(SELECTOR);
+    if(!el || el.disabled) return;
+    const rect = el.getBoundingClientRect();
+    if(rect.width===0 || rect.height===0) return;
+    const size = Math.max(rect.width, rect.height) * 1.8;
+    const ripple = document.createElement('span');
+    ripple.className = 'mw-ripple';
+    ripple.style.width = size+'px';
+    ripple.style.height = size+'px';
+    const originX = (e.clientX!=null ? e.clientX - rect.left : rect.width/2);
+    const originY = (e.clientY!=null ? e.clientY - rect.top : rect.height/2);
+    ripple.style.left = (originX - size/2)+'px';
+    ripple.style.top = (originY - size/2)+'px';
+    const isFilled = (el.classList.contains('mw-btn') && !el.classList.contains('mw-ghost') && !el.classList.contains('mw-fill-soft'))
+      || (el.classList.contains('mw-tag') && el.classList.contains('on'));
+    ripple.style.background = isFilled ? 'rgba(255,255,255,.4)' : 'rgba(74,68,88,.14)';
+    el.appendChild(ripple);
+    if(el.classList.contains('mw-btn')) el.classList.add('mw-pressed');
+    ripple.addEventListener('animationend', ()=>{ ripple.remove(); }, {once:true});
+    setTimeout(()=>{ el.classList.remove('mw-pressed'); }, 220);
+  }, {passive:true});
+}
+mwRippleInit();
+
 mwInitHeartClips();
 mwLoadState();
 mwSetLang(state.lang);
 mwMountHeart('welcome-heart', null, { flourish:false });
+mwMountHeart('splash-heart', null, { flourish:false });
+setTimeout(()=>{
+  const splash = document.getElementById('mw-splash');
+  if(splash){
+    splash.classList.add('hide');
+    setTimeout(()=> splash.remove(), 550);
+  }
+}, 1200);
 requestAnimationFrame(mwBreatheLoop);
