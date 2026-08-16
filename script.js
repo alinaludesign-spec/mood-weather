@@ -457,16 +457,76 @@ const state = {
 
 const STORAGE_KEY = 'moodWeatherData';
 
-// NOTE: Browser storage (localStorage/sessionStorage) isn't available inside the
-// Claude artifact preview sandbox, so these are no-ops here — entries live in memory
-// for the session instead. Your real deployed files (index.html/style.css/script.js)
-// are untouched and will keep saving to localStorage normally in an actual browser.
 function mwSaveState(){
-  /* no-op in the Claude artifact preview */
+  try{
+    const data = {
+      entries: state.entries.map(e => ({...e, date: e.date.toISOString()})),
+      lang: state.lang,
+      reminderOn: state.reminderOn
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  }catch(err){
+    console.error('Mood Weather: failed to save to localStorage', err);
+  }
 }
 
 function mwLoadState(){
-  /* no-op in the Claude artifact preview */
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return;
+    const data = JSON.parse(raw);
+    if(Array.isArray(data.entries)){
+      state.entries = data.entries.map(e => ({...e, date: new Date(e.date)}));
+    }
+    if(data.lang) state.lang = data.lang;
+    if(typeof data.reminderOn === 'boolean') state.reminderOn = data.reminderOn;
+  }catch(err){
+    console.error('Mood Weather: failed to load from localStorage', err);
+  }
+}
+
+function mwExportBackup(){
+  try{
+    const data = {
+      entries: state.entries.map(e => ({...e, date: e.date.toISOString()})),
+      lang: state.lang,
+      reminderOn: state.reminderOn
+    };
+    const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'mood-weather-backup.json';
+    link.click();
+    URL.revokeObjectURL(url);
+  }catch(err){
+    console.error('Mood Weather: export failed', err);
+  }
+}
+
+function mwImportBackup(event){
+  const file = event.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e){
+    try{
+      const data = JSON.parse(e.target.result);
+      if(Array.isArray(data.entries)){
+        state.entries = data.entries.map(en => ({...en, date: new Date(en.date)}));
+      }
+      if(data.lang) state.lang = data.lang;
+      if(typeof data.reminderOn === 'boolean') state.reminderOn = data.reminderOn;
+      mwSaveState();
+      mwSetLang(state.lang);
+      if(state.screen==='archive') mwRenderArchive();
+      alert('Backup restored successfully.');
+    }catch(err){
+      console.error('Mood Weather: import failed', err);
+      alert('This file could not be read as a Mood Weather backup.');
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
 }
 
 function mwGuessTags(text){
@@ -1055,6 +1115,8 @@ if (typeof window !== 'undefined') {
   window.mwPreviewNotif = mwPreviewNotif;
   window.mwToggleReminder = mwToggleReminder;
   window.mwTabGo = mwTabGo;
+  window.mwExportBackup = mwExportBackup;
+  window.mwImportBackup = mwImportBackup;
 }
 
 /* ---------- INIT ---------- */
@@ -1088,6 +1150,11 @@ mwRippleInit();
 
 mwInitHeartClips();
 mwLoadState();
+if(navigator.storage && navigator.storage.persist){
+  navigator.storage.persist().then(granted=>{
+    console.log('Mood Weather: persistent storage', granted ? 'granted' : 'not granted');
+  });
+}
 mwSetLang(state.lang);
 mwMountHeart('welcome-heart', null, { flourish:false });
 mwMountHeart('splash-heart', null, { flourish:false });

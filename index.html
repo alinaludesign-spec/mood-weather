@@ -201,6 +201,20 @@
     </div>
     <p class="mw-sub" id="push-note" style="margin-top:12px;">Real push notifications need the app installed on your phone with permission granted. This button shows what it will feel like.</p>
     <button class="mw-btn mw-ghost" id="preview-btn" style="margin-top:14px;" onclick="mwPreviewNotif()">Preview notification</button>
+
+    <div class="mw-detail-card" style="margin-top:14px;">
+      <div class="mw-row" style="border-bottom:none; flex-direction:column; align-items:flex-start; gap:10px;">
+        <div>
+          <div class="mw-row-label">Backup your data</div>
+          <div class="mw-row-sub">Save a copy of your entries as a file, or restore from one</div>
+        </div>
+        <div style="display:flex; gap:10px; width:100%;">
+          <button class="mw-btn mw-fill-soft mw-half" onclick="mwExportBackup()">Export</button>
+          <button class="mw-btn mw-ghost mw-half" onclick="document.getElementById('backup-file-input').click()">Import</button>
+        </div>
+        <input type="file" id="backup-file-input" accept="application/json" style="display:none;" onchange="mwImportBackup(event)">
+      </div>
+    </div>
   </div>
 
   <div class="mw-tabbar" id="mw-tabbar">
