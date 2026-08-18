@@ -1,4 +1,5 @@
-﻿/* ---------- I18N ---------- */
+﻿
+/* ---------- I18N ---------- */
 const STRINGS = {
   en: {
     welcomeTitle: 'What is the weather\nin your heart today?',
@@ -485,6 +486,7 @@ function mwLoadState(){
   }
 }
 
+// Backup-to-file capability kept available in code (not shown as buttons in Settings)
 function mwExportBackup(){
   try{
     const data = {

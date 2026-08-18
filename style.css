@@ -14,7 +14,7 @@
   [data-mood="rainbow"]{ --g1:#FDE3F0; --g2:#F6C3DE; --g3:#DE9FBC; --accent:#DB88B6; --accent-deep:#C46A9B; --m-ink:#83536D; --m-sub:#A97288; --m-line:#EED2E2; --mark:#9E7285; --tab-bg:#FDE3F0; --tab-border:#EED2E2; --tab-active:#83536D; --tab-inactive:#BFA3B2; }
   [data-mood="snow"]{ --g1:#EAF3FB; --g2:#CFE3F3; --g3:#A9C6E0; --accent:#8FB0D1; --accent-deep:#6E93B6; --m-ink:#033A8D; --m-sub:#3560A2; --m-line:#D7E3F3; --mark:#4C7DA9; --tab-bg:#EAF3FB; --tab-border:#D7E3F3; --tab-active:#033A8D; --tab-inactive:#7EA8CE; }
   /* Screens where the weather mood re-tints ink/sub/line — Welcome & Settings stay neutral */
-  #scr-today, #scr-confirm, #scr-detail, #scr-season, #scr-archive{
+  #scr-today, #scr-confirm, #scr-detail, #scr-season, #scr-archive, #scr-settings{
     --ink: var(--m-ink); --ink-soft: var(--m-sub); --line: var(--m-line);
   }
 
@@ -77,6 +77,9 @@
   .mw-heart{ position:relative; transform-origin:center; }
   .mw-heart-glow{ position:absolute; inset:-20%; border-radius:50%; background:radial-gradient(circle, var(--g3) 0%, transparent 68%); filter:blur(22px); opacity:.4; transition:background 1s ease; pointer-events:none; animation: mwGlowBreathe 6.5s ease-in-out infinite; }
   .mw-heart-clip{ position:relative; overflow:hidden; box-shadow: inset 0 -10px 22px rgba(74,68,88,.18), inset 0 6px 12px rgba(255,255,255,.55); }
+  .mw-heart-clip.mw-heart-lg{ clip-path: path("M75.00,135.33 C75.00,135.33,10.50,84.00,10.50,43.56 C10.50,20.22,27.00,4.67,48.00,4.67 C61.50,4.67,73.50,15.56,73.50,31.11 C73.50,15.56,87.00,4.67,103.50,4.67 C124.50,4.67,141.00,20.22,141.00,43.56 C141.00,84.00,75.00,135.33,75.00,135.33 Z"); }
+  .mw-heart-clip.mw-heart-md{ clip-path: path("M56.00,97.63 C56.00,97.63,7.84,60.60,7.84,31.42 C7.84,14.59,20.16,3.37,35.84,3.37 C45.92,3.37,54.88,11.22,54.88,22.44 C54.88,11.22,64.96,3.37,77.28,3.37 C92.96,3.37,105.28,14.59,105.28,31.42 C105.28,60.60,56.00,97.63,56.00,97.63 Z"); }
+  .mw-heart-clip.mw-heart-sm{ clip-path: path("M43.00,74.43 C43.00,74.43,6.02,46.20,6.02,23.96 C6.02,11.12,15.48,2.57,27.52,2.57 C35.26,2.57,42.14,8.56,42.14,17.11 C42.14,8.56,49.88,2.57,59.34,2.57 C71.38,2.57,80.84,11.12,80.84,23.96 C80.84,46.20,43.00,74.43,43.00,74.43 Z"); }
   .mw-heart-lg{ width:150px; height:140px; }
   .mw-heart-md{ width:112px; height:101px; }
   .mw-heart-sm{ width:86px; height:77px; }
@@ -200,7 +203,7 @@
   .mw-row{ display:flex; align-items:center; justify-content:space-between; padding:14px 4px; border-bottom:1px solid var(--line); }
   .mw-row:last-of-type{ border-bottom:none; }
   .mw-row-label{ font-size:14px; font-weight:700; }
-  .mw-row-sub{ font-size:11.5px; color:var(--ink-faint); margin-top:2px; }
+  .mw-row-sub{ font-size:11.5px; color:var(--ink-soft); margin-top:2px; }
   .mw-switch{ width:44px; height:26px; border-radius:14px; background:var(--line); position:relative; cursor:pointer; transition:background .2s ease; flex-shrink:0; }
   .mw-switch.on{ background:linear-gradient(135deg,var(--accent),var(--accent-deep)); }
   .mw-switch::after{ content:''; position:absolute; width:20px; height:20px; border-radius:50%; background:#fff; top:3px; left:3px; transition:left .2s ease; box-shadow:0 2px 6px rgba(0,0,0,.2); }
