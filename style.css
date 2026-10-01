@@ -1,5 +1,4 @@
-﻿
- :root{
+:root{
     --ink:#4A4458; --ink-soft:#8C81A0; --ink-faint:#B5ABC4;
     --card:#FFFFFFdd; --line:#E9E1EE;
     --g1:#F3E6F5; --g2:#EAD9EC; --g3:#DDC9E6;
@@ -14,7 +13,7 @@
   [data-mood="rainbow"]{ --g1:#FDE3F0; --g2:#F6C3DE; --g3:#DE9FBC; --accent:#DB88B6; --accent-deep:#C46A9B; --m-ink:#83536D; --m-sub:#A97288; --m-line:#EED2E2; --mark:#9E7285; --tab-bg:#FDE3F0; --tab-border:#EED2E2; --tab-active:#83536D; --tab-inactive:#BFA3B2; }
   [data-mood="snow"]{ --g1:#EAF3FB; --g2:#CFE3F3; --g3:#A9C6E0; --accent:#8FB0D1; --accent-deep:#6E93B6; --m-ink:#033A8D; --m-sub:#3560A2; --m-line:#D7E3F3; --mark:#4C7DA9; --tab-bg:#EAF3FB; --tab-border:#D7E3F3; --tab-active:#033A8D; --tab-inactive:#7EA8CE; }
   /* Screens where the weather mood re-tints ink/sub/line — Welcome & Settings stay neutral */
-  #scr-today, #scr-confirm, #scr-detail, #scr-season, #scr-archive, #scr-settings{
+  #scr-today, #scr-confirm, #scr-detail, #scr-season, #scr-archive, #scr-settings, #scr-add-email, #scr-email-form{
     --ink: var(--m-ink); --ink-soft: var(--m-sub); --line: var(--m-line);
   }
 
@@ -25,7 +24,9 @@
     width:100%; max-width:380px; border-radius:36px; overflow:hidden;
     box-shadow:0 0 0 10px #2B2635, 0 0 0 12px #47415a; position:relative; height:812px; isolation:isolate;
   }
-   @media (max-width:420px){ .mw-phone{border-radius:0;box-shadow:none;height:100vh;height:100dvh;} .mw-root{padding:0;} .mw-tabbar{position:fixed;left:0;right:0;bottom:0;} }
+  @media (max-width:420px){
+  .mw-phone{border-radius:0;box-shadow:none;height:100dvh;}
+  .mw-root{padding:0;}
 }
 
   .mw-bg{ position:absolute; inset:0; z-index:0;
@@ -48,7 +49,7 @@
   @keyframes mwFadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
 
   h1.mw-title{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:24px; line-height:1.3; color:var(--ink); white-space:pre-line; }
-  h2.mw-h2{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:21px; color:var(--ink); }
+  h2.mw-h2{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:21px; color:var(--ink); margin:0; }
   p.mw-sub{ font-size:13.5px; color:var(--ink-soft); line-height:1.55; margin-top:6px; }
 
   .mw-topbar{ display:flex; align-items:center; justify-content:space-between; margin-bottom:4px; }
@@ -187,6 +188,43 @@
   .mw-list-item .mw-li-note{ font-size:12.5px; color:var(--ink-soft); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
   .mw-detail-card{background:var(--card); backdrop-filter:blur(8px); border-radius:22px; padding:22px 18px; margin-top:4px; box-shadow:0 20px 40px -24px rgba(74,68,88,.35);}
+
+  .mw-month-nav{ display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+  .mw-month-nav-label{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:15px; color:var(--ink); }
+  .mw-month-nav-btn{ width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer;
+    background:var(--card); border:1.5px solid var(--line); color:var(--ink-soft); position:relative; overflow:hidden; -webkit-tap-highlight-color:transparent; }
+  .mw-month-nav-btn.disabled{ opacity:.35; pointer-events:none; }
+
+
+  .mw-account-head{ display:flex; align-items:center; gap:14px; margin-top:24px; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+  .mw-avatar{ width:58px; height:58px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center;
+    font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:20px; color:#fff;
+    background:linear-gradient(135deg,var(--accent),var(--accent-deep)); }
+  .mw-avatar.guest{ background:var(--card); border:1.5px solid var(--line); color:var(--ink-faint); }
+  .mw-account-name{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:17px; color:var(--ink); }
+  .mw-account-sub{ font-size:12.5px; color:var(--ink-soft); margin-top:2px; }
+
+  .mw-save-banner{ display:flex; align-items:center; gap:12px; margin-top:16px; padding:14px 16px; border-radius:18px;
+    background:var(--card); border:1.5px solid var(--line); cursor:pointer; position:relative; overflow:hidden; -webkit-tap-highlight-color:transparent; }
+  .mw-save-banner-icon{ width:34px; height:34px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg,var(--accent),var(--accent-deep)); color:#fff; }
+  .mw-save-banner-title{ font-weight:700; font-size:13.5px; color:var(--ink); }
+  .mw-save-banner-sub{ font-size:11.5px; color:var(--ink-soft); margin-top:1px; }
+  .mw-save-banner-arrow{ margin-left:auto; color:var(--ink-faint); flex-shrink:0; }
+
+  .mw-provider-btn{ display:flex; align-items:center; gap:12px; width:100%; padding:14px 16px; border-radius:22px;
+    background:var(--card); border:1.5px solid var(--line); cursor:pointer; font-family:'Nunito',sans-serif; font-weight:700; font-size:14px; color:var(--ink);
+    position:relative; overflow:hidden; -webkit-tap-highlight-color:transparent; }
+  .mw-provider-btn + .mw-provider-btn{ margin-top:10px; }
+  .mw-provider-icon{ width:20px; height:20px; flex-shrink:0; }
+  .mw-account-divider{ display:flex; align-items:center; gap:10px; margin:18px 0; color:var(--ink-faint); font-size:11.5px; }
+  .mw-account-divider::before, .mw-account-divider::after{ content:''; flex:1; height:1px; background:var(--line); }
+  .mw-skip-link{ text-align:center; margin-top:16px; font-size:13px; font-weight:700; color:var(--ink-soft); cursor:pointer; }
+  .mw-signout-link{ text-align:center; margin-top:16px; font-size:12.5px; font-weight:700; color:var(--ink-faint); cursor:pointer; }
+  .mw-email-input{ width:100%; padding:15px 16px; border-radius:18px; border:1.5px solid var(--line); background:var(--card);
+    font-family:'Nunito',sans-serif; font-size:14.5px; color:var(--ink); outline:none; }
+  .mw-email-input::placeholder{ color:var(--ink-faint); }
+
   .mw-detail-mood{font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:19px; margin-top:10px; text-align:center;}
   .mw-detail-note{font-size:13.5px; color:var(--ink-soft); line-height:1.6; margin-top:12px; border-top:1px solid var(--line); padding-top:12px;}
 
