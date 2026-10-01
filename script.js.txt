@@ -42,9 +42,27 @@ const STRINGS = {
     closingWarm: 'It looks like warmth found its way back by the end.',
     closingHeavy: 'It has been a heavier stretch lately.',
     settings: 'Settings',
+    accountTitle: 'Account',
     tabHome: 'Home',
     tabArchive: 'Archive',
-    tabSettings: 'Settings',
+    tabSettings: 'Account',
+    guestName: 'Guest',
+    guestSub: 'Your data lives on this device',
+    signedInWith: 'Signed in with',
+    saveBannerTitle: 'Save your history',
+    saveBannerSub: 'Add an email so nothing gets lost',
+    signOut: 'Sign out',
+    addEmailTitle: 'Save your climate',
+    addEmailSub: 'Add an email so your days, tags and notes stay safe — even if you switch phones.',
+    continueGoogle: 'Continue with Google',
+    continueApple: 'Continue with Apple',
+    orDivider: 'or',
+    continueEmail: 'Continue with email',
+    maybeLater: 'Maybe later',
+    emailFormSub: 'We will use this to keep your entries safe',
+    checkYourEmail: 'Check your email for a sign-in link.',
+    emailSendFailed: 'Could not send the link. Please try again.',
+    continueBtn: 'Continue',
     dailyReminder: 'Daily reminder',
     reminderSub: 'A gentle nudge in the evening',
     remindAt: 'Remind me at',
@@ -95,9 +113,27 @@ const STRINGS = {
     closingWarm: 'Похоже, к концу вернулось тепло.',
     closingHeavy: 'Последнее время было непросто.',
     settings: 'Настройки',
+    accountTitle: 'Аккаунт',
     tabHome: 'Главная',
     tabArchive: 'Архив',
-    tabSettings: 'Настройки',
+    tabSettings: 'Аккаунт',
+    guestName: 'Гость',
+    guestSub: 'Данные хранятся только на этом устройстве',
+    signedInWith: 'Вход через',
+    saveBannerTitle: 'Сохрани свою историю',
+    saveBannerSub: 'Добавь почту, чтобы ничего не потерялось',
+    signOut: 'Выйти',
+    addEmailTitle: 'Сохрани свою погоду',
+    addEmailSub: 'Добавь почту, чтобы дни, теги и заметки не потерялись — даже при смене телефона.',
+    continueGoogle: 'Продолжить с Google',
+    continueApple: 'Продолжить с Apple',
+    orDivider: 'или',
+    continueEmail: 'Продолжить с почтой',
+    maybeLater: 'Может быть позже',
+    emailFormSub: 'Мы будем использовать её, чтобы сохранить твои записи',
+    checkYourEmail: 'Проверь почту — там ссылка для входа.',
+    emailSendFailed: 'Не получилось отправить ссылку. Попробуй ещё раз.',
+    continueBtn: 'Продолжить',
     dailyReminder: 'Ежедневное напоминание',
     reminderSub: 'Мягкое напоминание вечером',
     remindAt: 'Напомнить в',
@@ -148,9 +184,27 @@ const STRINGS = {
     closingWarm: 'Схоже, наприкінці повернулося тепло.',
     closingHeavy: 'Останнім часом було нелегко.',
     settings: 'Налаштування',
+    accountTitle: 'Акаунт',
     tabHome: 'Головна',
     tabArchive: 'Архів',
-    tabSettings: 'Налаштування',
+    tabSettings: 'Акаунт',
+    guestName: 'Гість',
+    guestSub: 'Дані зберігаються лише на цьому пристрої',
+    signedInWith: 'Вхід через',
+    saveBannerTitle: 'Збережи свою історію',
+    saveBannerSub: 'Додай пошту, щоб нічого не загубилось',
+    signOut: 'Вийти',
+    addEmailTitle: 'Збережи свою погоду',
+    addEmailSub: 'Додай пошту, щоб дні, теги та нотатки не загубились — навіть при зміні телефону.',
+    continueGoogle: 'Продовжити з Google',
+    continueApple: 'Продовжити з Apple',
+    orDivider: 'або',
+    continueEmail: 'Продовжити з поштою',
+    maybeLater: 'Можливо пізніше',
+    emailFormSub: 'Ми використаємо її, щоб зберегти твої записи',
+    checkYourEmail: 'Перевір пошту — там посилання для входу.',
+    emailSendFailed: 'Не вдалося надіслати посилання. Спробуй ще раз.',
+    continueBtn: 'Продовжити',
     dailyReminder: 'Щоденне нагадування',
     reminderSub: "М'яке нагадування ввечері",
     remindAt: 'Нагадати о',
@@ -421,18 +475,13 @@ function mwMountHeart(heartId, mood, opts){
 function mwIcon(key, size=26){
   const s = size;
   const icons = {
-    sun: `<defs><radialGradient id="g-sun" cx="35%" cy="30%"><stop offset="0%" stop-color="#FFE1B0"/><stop offset="100%" stop-color="#EF9A4E"/></radialGradient></defs>
-      <circle cx="12" cy="12" r="4.6" fill="url(#g-sun)"/>
-      <g stroke="#EF9A4E" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="1.8" x2="12" y2="4.4"/><line x1="12" y1="19.6" x2="12" y2="22.2"/><line x1="1.8" y1="12" x2="4.4" y2="12"/><line x1="19.6" y1="12" x2="22.2" y2="12"/><line x1="4.6" y1="4.6" x2="6.4" y2="6.4"/><line x1="17.6" y1="17.6" x2="19.4" y2="19.4"/><line x1="4.6" y1="19.4" x2="6.4" y2="17.6"/><line x1="17.6" y1="6.4" x2="19.4" y2="4.6"/></g>`,
-    cloud: `<defs><linearGradient id="g-cloud" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#B7C2EA"/><stop offset="100%" stop-color="#7E8DC0"/></linearGradient></defs>
-      <path d="M6.5 17.5a4 4 0 0 1-.4-8 5.2 5.2 0 0 1 10-1.6 3.8 3.8 0 0 1-.8 9.6z" fill="url(#g-cloud)" stroke="#6B7AB0" stroke-width="1"/>`,
-    rain: `<defs><linearGradient id="g-rain" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#A9D8DF"/><stop offset="100%" stop-color="#5E9CAE"/></linearGradient></defs>
-      <path d="M6.5 13a4 4 0 0 1-.4-8 5.2 5.2 0 0 1 10-1.4 3.8 3.8 0 0 1-.9 7.9z" fill="url(#g-rain)" stroke="#4E8699" stroke-width="1"/>
+    sun: `<circle cx="12" cy="12" r="4.6" fill="#F3AE72"/>
+      <g stroke="#F3AE72" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1.8" x2="12" y2="4.4"/><line x1="12" y1="19.6" x2="12" y2="22.2"/><line x1="1.8" y1="12" x2="4.4" y2="12"/><line x1="19.6" y1="12" x2="22.2" y2="12"/><line x1="4.6" y1="4.6" x2="6.4" y2="6.4"/><line x1="17.6" y1="17.6" x2="19.4" y2="19.4"/><line x1="4.6" y1="19.4" x2="6.4" y2="17.6"/><line x1="17.6" y1="6.4" x2="19.4" y2="4.6"/></g>`,
+    cloud: `<path d="M6.5 17.5a4 4 0 0 1-.4-8 5.2 5.2 0 0 1 10-1.6 3.8 3.8 0 0 1-.8 9.6z" fill="#96A3CC"/>`,
+    rain: `<path d="M6.5 13a4 4 0 0 1-.4-8 5.2 5.2 0 0 1 10-1.4 3.8 3.8 0 0 1-.9 7.9z" fill="#7FAEC0"/>
       <g stroke="#5E9CAE" stroke-width="1.9" stroke-linecap="round"><line x1="8" y1="17.5" x2="6.8" y2="21.2"/><line x1="12" y1="17.5" x2="10.8" y2="21.2"/><line x1="16" y1="17.5" x2="14.8" y2="21.2"/></g>`,
-    storm: `<defs><linearGradient id="g-storm" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#B39FD8"/><stop offset="100%" stop-color="#6E5896"/></linearGradient>
-      <linearGradient id="g-bolt" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFD873"/><stop offset="100%" stop-color="#F0A93E"/></linearGradient></defs>
-      <path d="M6.5 12.6a4 4 0 0 1-.4-7.9 5.2 5.2 0 0 1 10-1.5 3.8 3.8 0 0 1-.8 9.4z" fill="url(#g-storm)" stroke="#6E5896" stroke-width="1"/>
-      <path d="M13 13.5l-3.4 5.6h2.7l-1.7 4.6 4.6-6.2h-2.7z" fill="url(#g-bolt)"/>`,
+    storm: `<path d="M6.5 12.6a4 4 0 0 1-.4-7.9 5.2 5.2 0 0 1 10-1.5 3.8 3.8 0 0 1-.8 9.4z" fill="#8175A0"/>
+      <path d="M13 13.5l-3.4 5.6h2.7l-1.7 4.6 4.6-6.2h-2.7z" fill="#F0A93E"/>`,
     fog: `<defs><linearGradient id="g-fog" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#C8B9CE"/><stop offset="100%" stop-color="#9A899E"/></linearGradient></defs>
       <g stroke="url(#g-fog)" stroke-width="2.1" stroke-linecap="round"><line x1="3.5" y1="8" x2="20.5" y2="8"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="3.5" y1="16" x2="20.5" y2="16"/></g>`,
     rainbow: `<path d="M3 16a9 9 0 0 1 18 0" fill="none" stroke="#E39BC0" stroke-width="2.1" stroke-linecap="round"/>
@@ -453,17 +502,114 @@ function mwIcon(key, size=26){
 const state = {
   screen:'welcome', selectedMood:null, entries:[], archiveView:'week',
   editingToday:false, activeTags:[], reminderOn:false, searching:false, activeSearchTags:[],
-  lang:'en', lastDetailEntry:null, lastDetailDate:null
+  lang:'en', lastDetailEntry:null, lastDetailDate:null,
+  viewMonth: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
+  account: { linked:false, email:null, name:null, provider:null, userId:null }
 };
 
 const STORAGE_KEY = 'moodWeatherData';
+
+/* ---------- SUPABASE ---------- */
+// SUPABASE_URL / SUPABASE_ANON_KEY come from config.js (not committed with real
+// keys to version control — fill them in there). If they are missing or still
+// the placeholder values, the app quietly falls back to guest-only mode
+// (localStorage), so it stays usable before Supabase is configured.
+const sb = (typeof window !== 'undefined' && window.supabase
+  && typeof SUPABASE_URL !== 'undefined' && SUPABASE_URL && SUPABASE_URL !== 'YOUR_SUPABASE_URL'
+  && typeof SUPABASE_ANON_KEY !== 'undefined' && SUPABASE_ANON_KEY && SUPABASE_ANON_KEY !== 'YOUR_SUPABASE_ANON_KEY')
+  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+  : null;
+
+function mwDateKey(d){
+  const y = d.getFullYear(), m = String(d.getMonth()+1).padStart(2,'0'), day = String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
+
+async function mwPushEntryToCloud(entry){
+  if(!sb || !state.account.linked || !state.account.userId || !entry) return;
+  try{
+    await sb.from('mood_entries').upsert({
+      user_id: state.account.userId,
+      date: mwDateKey(entry.date),
+      mood: entry.mood,
+      note: entry.note || '',
+      tags: entry.tags || [],
+      kindness: entry.kindness || null
+    }, { onConflict: 'user_id,date' });
+  }catch(err){
+    console.error('Mood Weather: failed to save entry to Supabase', err);
+  }
+}
+
+async function mwSyncEntriesFromCloud(){
+  if(!sb || !state.account.userId) return;
+  try{
+    // Upload any entries that were created locally before signing in (guest data),
+    // so a first sign-in never loses what was already logged on this device.
+    if(state.entries.length){
+      const rows = state.entries.map(e => ({
+        user_id: state.account.userId,
+        date: mwDateKey(e.date),
+        mood: e.mood,
+        note: e.note || '',
+        tags: e.tags || [],
+        kindness: e.kindness || null
+      }));
+      await sb.from('mood_entries').upsert(rows, { onConflict: 'user_id,date' });
+    }
+    // The cloud is now the source of truth — pull everything back down so the
+    // same account sees the same history on any device.
+    const { data, error } = await sb.from('mood_entries')
+      .select('*').eq('user_id', state.account.userId).order('date', { ascending:true });
+    if(!error && Array.isArray(data)){
+      state.entries = data.map(r => ({
+        date: new Date(r.date + 'T00:00:00'),
+        mood: r.mood,
+        note: r.note || '',
+        tags: r.tags || [],
+        ...(r.kindness ? { kindness: r.kindness } : {})
+      }));
+    }
+  }catch(err){
+    console.error('Mood Weather: failed to sync with Supabase', err);
+  }
+}
+
+async function mwHandleAuthSession(session){
+  if(session && session.user){
+    const u = session.user;
+    const meta = u.user_metadata || {};
+    const name = meta.full_name || meta.name || null;
+    const rawProvider = (u.app_metadata && u.app_metadata.provider) || 'email';
+    const provider = rawProvider === 'google' ? 'Google' : rawProvider === 'apple' ? 'Apple' : 'Email';
+    state.account = { linked:true, email:u.email, name, provider, userId:u.id };
+    await mwSyncEntriesFromCloud();
+  } else {
+    state.account = { linked:false, email:null, name:null, provider:null, userId:null };
+  }
+  mwSaveState();
+  mwRenderAccount();
+  if(state.screen==='today') mwRenderToday();
+  if(state.screen==='archive') mwRenderArchive();
+}
+
+async function mwInitAuth(){
+  if(!sb) return;
+  try{
+    const { data:{ session } } = await sb.auth.getSession();
+    await mwHandleAuthSession(session);
+  }catch(err){
+    console.error('Mood Weather: failed to read Supabase session', err);
+  }
+  sb.auth.onAuthStateChange((_event, session)=>{ mwHandleAuthSession(session); });
+}
 
 function mwSaveState(){
   try{
     const data = {
       entries: state.entries.map(e => ({...e, date: e.date.toISOString()})),
       lang: state.lang,
-      reminderOn: state.reminderOn
+      account: state.account
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   }catch(err){
@@ -480,7 +626,7 @@ function mwLoadState(){
       state.entries = data.entries.map(e => ({...e, date: new Date(e.date)}));
     }
     if(data.lang) state.lang = data.lang;
-    if(typeof data.reminderOn === 'boolean') state.reminderOn = data.reminderOn;
+    if(data.account && typeof data.account === 'object') state.account = data.account;
   }catch(err){
     console.error('Mood Weather: failed to load from localStorage', err);
   }
@@ -581,18 +727,28 @@ function mwApplyStaticStrings(){
   document.getElementById('detail-back-label').textContent = t('archive');
   document.getElementById('season-back-label').textContent = t('archive');
   document.getElementById('season-title').textContent = t('yourSeason');
-  document.getElementById('settings-back-label').textContent = t('back');
-  document.getElementById('settings-title').textContent = t('settings');
+  document.getElementById('settings-title').textContent = t('accountTitle');
   document.getElementById('tab-home-label').textContent = t('tabHome');
   document.getElementById('tab-archive-label').textContent = t('tabArchive');
   document.getElementById('tab-settings-label').textContent = t('tabSettings');
   document.getElementById('language-label').textContent = t('language');
-  document.getElementById('reminder-label').textContent = t('dailyReminder');
-  document.getElementById('reminder-sub').textContent = t('reminderSub');
-  document.getElementById('remind-at-label').textContent = t('remindAt');
-  document.getElementById('push-note').textContent = t('pushNote');
-  document.getElementById('preview-btn').textContent = t('previewNotif');
   document.getElementById('notif-text').textContent = t('notifText');
+  document.getElementById('save-banner-title').textContent = t('saveBannerTitle');
+  document.getElementById('save-banner-sub').textContent = t('saveBannerSub');
+  document.getElementById('signout-link').textContent = t('signOut');
+  document.getElementById('add-email-back-label').textContent = t('accountTitle');
+  document.getElementById('add-email-title').textContent = t('addEmailTitle');
+  document.getElementById('add-email-sub').textContent = t('addEmailSub');
+  document.getElementById('google-btn-label').textContent = t('continueGoogle');
+  document.getElementById('apple-btn-label').textContent = t('continueApple');
+  document.getElementById('or-divider').textContent = t('orDivider');
+  document.getElementById('email-btn').textContent = t('continueEmail');
+  document.getElementById('skip-link').textContent = t('maybeLater');
+  document.getElementById('email-form-back-label').textContent = t('back');
+  document.getElementById('email-form-title').textContent = t('addEmailTitle');
+  document.getElementById('email-form-sub').textContent = t('emailFormSub');
+  document.getElementById('email-continue-btn').textContent = t('continueBtn');
+  mwRenderAccount();
   document.getElementById('archive-sub').textContent = state.searching ? t('searchByWords') : t('tapDay');
 }
 
@@ -602,12 +758,13 @@ function mwGo(screen){
   state.screen = screen;
   if(screen==='today') mwRenderToday();
   if(screen==='archive'){ mwUpdateDots(); mwCloseSearch(); }
+  if(screen==='settings') mwRenderAccount();
   document.getElementById('mw-phone').setAttribute('data-mood', mwCurrentBgMood());
   mwSyncTabbar(screen);
 }
 
 function mwSyncTabbar(screen){
-  const tabOf = { welcome:'home', today:'home', confirm:'home', archive:'archive', detail:'archive', season:'archive', settings:'settings' };
+  const tabOf = { welcome:'home', today:'home', confirm:'home', archive:'archive', detail:'archive', season:'archive', settings:'settings', 'add-email':'settings', 'email-form':'settings' };
   const active = tabOf[screen] || 'home';
   document.getElementById('tab-home').classList.toggle('active', active==='home');
   document.getElementById('tab-archive').classList.toggle('active', active==='archive');
@@ -774,6 +931,7 @@ function mwSave(){
   if(existing){ existing.mood = mood; existing.note = note; existing.tags = tags; }
   else { state.entries.push({date:new Date(), mood, note, tags}); }
   state.entries.sort((a,b)=>a.date-b.date); mwSaveState();
+  mwPushEntryToCloud(existing || state.entries[state.entries.length-1]);
   state.lastMood = mood;
   state.editingToday = false;
 
@@ -788,6 +946,7 @@ function mwSaveKindness(){
   if(!val) return;
   const e = todayEntry();
   if(e) e.kindness = val; mwSaveState();
+  if(e) mwPushEntryToCloud(e);
   input.placeholder = t('kindnessSaved');
   input.value = '';
 }
@@ -804,9 +963,23 @@ function mwSetView(view){
   document.getElementById('toggle-week').classList.toggle('on', view==='week');
   document.getElementById('toggle-month').classList.toggle('on', view==='month');
   document.getElementById('archive-grid').style.display = view==='week' ? 'grid' : 'none';
-  document.getElementById('archive-grid-month').style.display = view==='month' ? 'grid' : 'none';
+  document.getElementById('month-view-block').style.display = view==='month' ? 'block' : 'none';
   document.getElementById('month-actions').style.display = view==='month' ? 'flex' : 'none';
   document.getElementById('season-btn').style.display = view==='month' ? 'none' : 'block';
+  if(view==='month'){
+    const now = new Date();
+    state.viewMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+  }
+  mwRenderArchive();
+}
+
+function mwShiftMonth(delta){
+  const d = new Date(state.viewMonth);
+  d.setMonth(d.getMonth()+delta);
+  const now = new Date();
+  const capped = new Date(now.getFullYear(), now.getMonth(), 1);
+  if(d > capped) return;
+  state.viewMonth = d;
   mwRenderArchive();
 }
 
@@ -845,9 +1018,13 @@ function mwRenderArchive(){
   } else {
     const grid = document.getElementById('archive-grid-month');
     grid.innerHTML = '';
-    const year = today.getFullYear(), month = today.getMonth();
+    const year = state.viewMonth.getFullYear(), month = state.viewMonth.getMonth();
     const daysInMonth = new Date(year, month+1, 0).getDate();
     const firstDow = new Date(year, month, 1).getDay();
+    document.getElementById('month-nav-label').textContent = MONTHS_I18N[state.lang][month] + ' ' + year;
+    const now = new Date();
+    const isCurrentMonth = (year===now.getFullYear() && month===now.getMonth());
+    document.getElementById('month-next-btn').classList.toggle('disabled', isCurrentMonth);
     for(let i=0;i<firstDow;i++){
       const empty = document.createElement('div');
       empty.className = 'mw-day-cell empty';
@@ -1041,16 +1218,85 @@ function mwRenderSeason(){
   });
 }
 
-/* ---------- SETTINGS ---------- */
-function mwToggleReminder(){
-  state.reminderOn = !state.reminderOn;
-  document.getElementById('reminder-switch').classList.toggle('on', state.reminderOn);
-  document.getElementById('reminder-time-row').style.display = state.reminderOn ? 'flex' : 'none';
+/* ---------- ACCOUNT ---------- */
+function mwInitials(name, email){
+  const src = (name || '').trim();
+  if(src){
+    const parts = src.split(/\s+/).filter(Boolean);
+    if(parts.length>=2) return (parts[0][0]+parts[1][0]).toUpperCase();
+    return src.slice(0,2).toUpperCase();
+  }
+  if(email){ return email.slice(0,2).toUpperCase(); }
+  return '';
 }
-function mwPreviewNotif(){
-  const banner = document.getElementById('mw-notif');
-  banner.classList.add('show');
-  setTimeout(()=> banner.classList.remove('show'), 3200);
+
+function mwRenderAccount(){
+  const avatar = document.getElementById('account-avatar');
+  const nameEl = document.getElementById('account-name');
+  const subEl = document.getElementById('account-sub');
+  const banner = document.getElementById('save-banner');
+  const signout = document.getElementById('signout-link');
+  if(state.account.linked){
+    avatar.classList.remove('guest');
+    avatar.innerHTML = mwInitials(state.account.name, state.account.email);
+    nameEl.textContent = state.account.name || state.account.email;
+    const providerLabel = state.account.provider ? (t('signedInWith') + ' ' + state.account.provider) : state.account.email;
+    subEl.textContent = state.account.name ? state.account.email : providerLabel;
+    banner.style.display = 'none';
+    signout.style.display = 'block';
+  } else {
+    avatar.classList.add('guest');
+    avatar.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.5-6 8-6s8 2 8 6"/></svg>';
+    nameEl.textContent = t('guestName');
+    subEl.textContent = t('guestSub');
+    banner.style.display = 'flex';
+    signout.style.display = 'none';
+  }
+}
+
+function mwAccountHeadClick(){
+  if(!state.account.linked) mwGo('add-email');
+}
+
+async function mwSignInWithProvider(provider){
+  if(!sb){
+    alert('Supabase is not connected yet. Add your project URL and anon key to config.js first.');
+    return;
+  }
+  const redirectTo = window.location.href.split('#')[0].split('?')[0];
+  const { error } = await sb.auth.signInWithOAuth({ provider, options:{ redirectTo } });
+  if(error) console.error('Mood Weather: OAuth sign-in failed', error);
+  // On success the browser redirects to the provider and back; mwInitAuth's
+  // onAuthStateChange listener picks up the new session after the redirect.
+}
+
+async function mwSubmitEmail(){
+  const input = document.getElementById('email-input');
+  const val = (input.value || '').trim();
+  if(!val || !val.includes('@')) return;
+  if(!sb){
+    alert('Supabase is not connected yet. Add your project URL and anon key to config.js first.');
+    return;
+  }
+  const redirectTo = window.location.href.split('#')[0].split('?')[0];
+  const { error } = await sb.auth.signInWithOtp({ email: val, options:{ emailRedirectTo: redirectTo } });
+  if(error){
+    console.error('Mood Weather: magic-link sign-in failed', error);
+    document.getElementById('email-form-sub').textContent = t('emailSendFailed');
+    return;
+  }
+  input.value = '';
+  document.getElementById('email-form-sub').textContent = t('checkYourEmail');
+}
+
+async function mwSignOut(){
+  if(sb){
+    try{ await sb.auth.signOut(); }
+    catch(err){ console.error('Mood Weather: sign-out failed', err); }
+  }
+  state.account = { linked:false, email:null, name:null, provider:null, userId:null };
+  mwSaveState();
+  mwRenderAccount();
 }
 
 const dotScreens = ['welcome','today','archive'];
@@ -1069,14 +1315,50 @@ if (typeof window !== 'undefined') {
   window.mwExportMonth = mwExportMonth;
   window.mwRenderSeason = mwRenderSeason;
   window.mwOnNoteInput = mwOnNoteInput;
-  window.mwPreviewNotif = mwPreviewNotif;
-  window.mwToggleReminder = mwToggleReminder;
   window.mwTabGo = mwTabGo;
 }
 
 /* ---------- INIT ---------- */
+/* ---------- RIPPLE (soft wave on tap) ---------- */
+function mwRippleInit(){
+  const SELECTOR = '.mw-btn, .mw-mood-btn, .mw-tag, .mw-tab, .mw-day-cell, .mw-icon-btn, .mw-toggle button, .mw-provider-btn, .mw-save-banner, .mw-account-head, .mw-month-nav-btn';
+  document.addEventListener('pointerdown', (e)=>{
+    const el = e.target.closest(SELECTOR);
+    if(!el || el.disabled) return;
+    const rect = el.getBoundingClientRect();
+    if(rect.width===0 || rect.height===0) return;
+    const size = Math.max(rect.width, rect.height) * 1.8;
+    const ripple = document.createElement('span');
+    ripple.className = 'mw-ripple';
+    ripple.style.width = size+'px';
+    ripple.style.height = size+'px';
+    const originX = (e.clientX!=null ? e.clientX - rect.left : rect.width/2);
+    const originY = (e.clientY!=null ? e.clientY - rect.top : rect.height/2);
+    ripple.style.left = (originX - size/2)+'px';
+    ripple.style.top = (originY - size/2)+'px';
+    const isFilled = (el.classList.contains('mw-btn') && !el.classList.contains('mw-ghost') && !el.classList.contains('mw-fill-soft'))
+      || (el.classList.contains('mw-tag') && el.classList.contains('on'));
+    ripple.style.background = isFilled ? 'rgba(255,255,255,.4)' : 'rgba(74,68,88,.14)';
+    el.appendChild(ripple);
+    if(el.classList.contains('mw-btn')) el.classList.add('mw-pressed');
+    ripple.addEventListener('animationend', ()=>{ ripple.remove(); }, {once:true});
+    setTimeout(()=>{ el.classList.remove('mw-pressed'); }, 220);
+  }, {passive:true});
+}
+mwRippleInit();
+
 mwInitHeartClips();
 mwLoadState();
 mwSetLang(state.lang);
+mwInitAuth();
 mwMountHeart('welcome-heart', null, { flourish:false });
+mwMountHeart('splash-heart', null, { flourish:false });
+mwMountHeart('addemail-heart', null, { flourish:false });
+setTimeout(()=>{
+  const splash = document.getElementById('mw-splash');
+  if(splash){
+    splash.classList.add('hide');
+    setTimeout(()=> splash.remove(), 550);
+  }
+}, 1200);
 requestAnimationFrame(mwBreatheLoop);

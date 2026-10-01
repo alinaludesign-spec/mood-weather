@@ -23,7 +23,7 @@
   [data-mood="rainbow"]{ --g1:#FDE3F0; --g2:#F6C3DE; --g3:#DE9FBC; --accent:#DB88B6; --accent-deep:#C46A9B; --m-ink:#83536D; --m-sub:#A97288; --m-line:#EED2E2; --mark:#9E7285; --tab-bg:#FDE3F0; --tab-border:#EED2E2; --tab-active:#83536D; --tab-inactive:#BFA3B2; }
   [data-mood="snow"]{ --g1:#EAF3FB; --g2:#CFE3F3; --g3:#A9C6E0; --accent:#8FB0D1; --accent-deep:#6E93B6; --m-ink:#033A8D; --m-sub:#3560A2; --m-line:#D7E3F3; --mark:#4C7DA9; --tab-bg:#EAF3FB; --tab-border:#D7E3F3; --tab-active:#033A8D; --tab-inactive:#7EA8CE; }
   /* Screens where the weather mood re-tints ink/sub/line — Welcome & Settings stay neutral */
-  #scr-today, #scr-confirm, #scr-detail, #scr-season, #scr-archive{
+  #scr-today, #scr-confirm, #scr-detail, #scr-season, #scr-archive, #scr-settings, #scr-add-email, #scr-email-form{
     --ink: var(--m-ink); --ink-soft: var(--m-sub); --line: var(--m-line);
   }
 
@@ -59,7 +59,7 @@
   @keyframes mwFadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
 
   h1.mw-title{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:24px; line-height:1.3; color:var(--ink); white-space:pre-line; }
-  h2.mw-h2{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:21px; color:var(--ink); }
+  h2.mw-h2{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:21px; color:var(--ink); margin:0; }
   p.mw-sub{ font-size:13.5px; color:var(--ink-soft); line-height:1.55; margin-top:6px; }
 
   .mw-topbar{ display:flex; align-items:center; justify-content:space-between; margin-bottom:4px; }
@@ -86,6 +86,9 @@
   .mw-heart{ position:relative; transform-origin:center; }
   .mw-heart-glow{ position:absolute; inset:-20%; border-radius:50%; background:radial-gradient(circle, var(--g3) 0%, transparent 68%); filter:blur(22px); opacity:.4; transition:background 1s ease; pointer-events:none; animation: mwGlowBreathe 6.5s ease-in-out infinite; }
   .mw-heart-clip{ position:relative; overflow:hidden; box-shadow: inset 0 -10px 22px rgba(74,68,88,.18), inset 0 6px 12px rgba(255,255,255,.55); }
+  .mw-heart-clip.mw-heart-lg{ clip-path: path("M75.00,135.33 C75.00,135.33,10.50,84.00,10.50,43.56 C10.50,20.22,27.00,4.67,48.00,4.67 C61.50,4.67,73.50,15.56,73.50,31.11 C73.50,15.56,87.00,4.67,103.50,4.67 C124.50,4.67,141.00,20.22,141.00,43.56 C141.00,84.00,75.00,135.33,75.00,135.33 Z"); }
+  .mw-heart-clip.mw-heart-md{ clip-path: path("M56.00,97.63 C56.00,97.63,7.84,60.60,7.84,31.42 C7.84,14.59,20.16,3.37,35.84,3.37 C45.92,3.37,54.88,11.22,54.88,22.44 C54.88,11.22,64.96,3.37,77.28,3.37 C92.96,3.37,105.28,14.59,105.28,31.42 C105.28,60.60,56.00,97.63,56.00,97.63 Z"); }
+  .mw-heart-clip.mw-heart-sm{ clip-path: path("M43.00,74.43 C43.00,74.43,6.02,46.20,6.02,23.96 C6.02,11.12,15.48,2.57,27.52,2.57 C35.26,2.57,42.14,8.56,42.14,17.11 C42.14,8.56,49.88,2.57,59.34,2.57 C71.38,2.57,80.84,11.12,80.84,23.96 C80.84,46.20,43.00,74.43,43.00,74.43 Z"); }
   .mw-heart-lg{ width:150px; height:140px; }
   .mw-heart-md{ width:112px; height:101px; }
   .mw-heart-sm{ width:86px; height:77px; }
@@ -195,6 +198,43 @@
   .mw-list-item .mw-li-note{ font-size:12.5px; color:var(--ink-soft); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
   .mw-detail-card{background:var(--card); backdrop-filter:blur(8px); border-radius:22px; padding:22px 18px; margin-top:4px; box-shadow:0 20px 40px -24px rgba(74,68,88,.35);}
+
+  .mw-month-nav{ display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+  .mw-month-nav-label{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:15px; color:var(--ink); }
+  .mw-month-nav-btn{ width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer;
+    background:var(--card); border:1.5px solid var(--line); color:var(--ink-soft); position:relative; overflow:hidden; -webkit-tap-highlight-color:transparent; }
+  .mw-month-nav-btn.disabled{ opacity:.35; pointer-events:none; }
+
+
+  .mw-account-head{ display:flex; align-items:center; gap:14px; margin-top:24px; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+  .mw-avatar{ width:58px; height:58px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center;
+    font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:20px; color:#fff;
+    background:linear-gradient(135deg,var(--accent),var(--accent-deep)); }
+  .mw-avatar.guest{ background:var(--card); border:1.5px solid var(--line); color:var(--ink-faint); }
+  .mw-account-name{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:17px; color:var(--ink); }
+  .mw-account-sub{ font-size:12.5px; color:var(--ink-soft); margin-top:2px; }
+
+  .mw-save-banner{ display:flex; align-items:center; gap:12px; margin-top:16px; padding:14px 16px; border-radius:18px;
+    background:var(--card); border:1.5px solid var(--line); cursor:pointer; position:relative; overflow:hidden; -webkit-tap-highlight-color:transparent; }
+  .mw-save-banner-icon{ width:34px; height:34px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg,var(--accent),var(--accent-deep)); color:#fff; }
+  .mw-save-banner-title{ font-weight:700; font-size:13.5px; color:var(--ink); }
+  .mw-save-banner-sub{ font-size:11.5px; color:var(--ink-soft); margin-top:1px; }
+  .mw-save-banner-arrow{ margin-left:auto; color:var(--ink-faint); flex-shrink:0; }
+
+  .mw-provider-btn{ display:flex; align-items:center; gap:12px; width:100%; padding:14px 16px; border-radius:22px;
+    background:var(--card); border:1.5px solid var(--line); cursor:pointer; font-family:'Nunito',sans-serif; font-weight:700; font-size:14px; color:var(--ink);
+    position:relative; overflow:hidden; -webkit-tap-highlight-color:transparent; }
+  .mw-provider-btn + .mw-provider-btn{ margin-top:10px; }
+  .mw-provider-icon{ width:20px; height:20px; flex-shrink:0; }
+  .mw-account-divider{ display:flex; align-items:center; gap:10px; margin:18px 0; color:var(--ink-faint); font-size:11.5px; }
+  .mw-account-divider::before, .mw-account-divider::after{ content:''; flex:1; height:1px; background:var(--line); }
+  .mw-skip-link{ text-align:center; margin-top:16px; font-size:13px; font-weight:700; color:var(--ink-soft); cursor:pointer; }
+  .mw-signout-link{ text-align:center; margin-top:16px; font-size:12.5px; font-weight:700; color:var(--ink-faint); cursor:pointer; }
+  .mw-email-input{ width:100%; padding:15px 16px; border-radius:18px; border:1.5px solid var(--line); background:var(--card);
+    font-family:'Nunito',sans-serif; font-size:14.5px; color:var(--ink); outline:none; }
+  .mw-email-input::placeholder{ color:var(--ink-faint); }
+
   .mw-detail-mood{font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:19px; margin-top:10px; text-align:center;}
   .mw-detail-note{font-size:13.5px; color:var(--ink-soft); line-height:1.6; margin-top:12px; border-top:1px solid var(--line); padding-top:12px;}
 
@@ -209,7 +249,7 @@
   .mw-row{ display:flex; align-items:center; justify-content:space-between; padding:14px 4px; border-bottom:1px solid var(--line); }
   .mw-row:last-of-type{ border-bottom:none; }
   .mw-row-label{ font-size:14px; font-weight:700; }
-  .mw-row-sub{ font-size:11.5px; color:var(--ink-faint); margin-top:2px; }
+  .mw-row-sub{ font-size:11.5px; color:var(--ink-soft); margin-top:2px; }
   .mw-switch{ width:44px; height:26px; border-radius:14px; background:var(--line); position:relative; cursor:pointer; transition:background .2s ease; flex-shrink:0; }
   .mw-switch.on{ background:linear-gradient(135deg,var(--accent),var(--accent-deep)); }
   .mw-switch::after{ content:''; position:absolute; width:20px; height:20px; border-radius:50%; background:#fff; top:3px; left:3px; transition:left .2s ease; box-shadow:0 2px 6px rgba(0,0,0,.2); }
@@ -344,7 +384,18 @@
         <button id="toggle-month" onclick="mwSetView('month')">Month</button>
       </div>
       <div class="mw-week-grid" id="archive-grid" style="display:grid;"></div>
-      <div class="mw-month-grid" id="archive-grid-month" style="display:none;"></div>
+      <div id="month-view-block" style="display:none;">
+        <div class="mw-month-nav">
+          <div class="mw-month-nav-btn" id="month-prev-btn" onclick="mwShiftMonth(-1)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </div>
+          <div class="mw-month-nav-label" id="month-nav-label"></div>
+          <div class="mw-month-nav-btn" id="month-next-btn" onclick="mwShiftMonth(1)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </div>
+        </div>
+        <div class="mw-month-grid" id="archive-grid-month"></div>
+      </div>
       <div class="mw-palette" id="archive-palette"></div>
       <div class="mw-month-actions" id="month-actions" style="display:none;">
         <button class="mw-btn mw-ghost mw-small mw-half" id="export-btn" onclick="mwExportMonth()">Export palette</button>
@@ -391,11 +442,28 @@
   </div>
 
   <div class="mw-screen" id="scr-settings">
-    <div class="mw-back" onclick="mwGo('today')">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
-      <span id="settings-back-label">Back</span>
+    <h2 class="mw-h2" id="settings-title">Account</h2>
+
+    <div class="mw-account-head" id="account-head" onclick="mwAccountHeadClick()">
+      <div class="mw-avatar guest" id="account-avatar">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.5-6 8-6s8 2 8 6"/></svg>
+      </div>
+      <div>
+        <div class="mw-account-name" id="account-name">Guest</div>
+        <div class="mw-account-sub" id="account-sub">Your data lives on this device</div>
+      </div>
     </div>
-    <h2 class="mw-h2" id="settings-title">Settings</h2>
+
+    <div class="mw-save-banner" id="save-banner" onclick="mwGo('add-email')">
+      <div class="mw-save-banner-icon">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 5v7h7"/></svg>
+      </div>
+      <div>
+        <div class="mw-save-banner-title" id="save-banner-title">Save your history</div>
+        <div class="mw-save-banner-sub" id="save-banner-sub">Add an email so nothing gets lost</div>
+      </div>
+      <div class="mw-save-banner-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></div>
+    </div>
 
     <p class="mw-sub" id="language-label" style="margin-top:18px; font-weight:700; color:var(--ink);">Language</p>
     <div class="mw-lang-dropdown" style="margin-top:8px;">
@@ -413,23 +481,47 @@
       </div>
     </div>
 
-    <div class="mw-detail-card" style="margin-top:14px;">
-      <div class="mw-row">
-        <div><div class="mw-row-label" id="reminder-label">Daily reminder</div><div class="mw-row-sub" id="reminder-sub">A gentle nudge in the evening</div></div>
-        <div class="mw-switch" id="reminder-switch" onclick="mwToggleReminder()"></div>
-      </div>
-      <div class="mw-row" id="reminder-time-row" style="display:none;">
-        <div class="mw-row-label" id="remind-at-label">Remind me at</div>
-        <select class="mw-select" id="reminder-time">
-          <option value="19:00">7:00 PM</option>
-          <option value="20:00" selected>8:00 PM</option>
-          <option value="21:00">9:00 PM</option>
-          <option value="22:00">10:00 PM</option>
-        </select>
-      </div>
+    <div class="mw-signout-link" id="signout-link" style="display:none; margin-top:18px;" onclick="mwSignOut()">Sign out</div>
+  </div>
+
+  <div class="mw-screen" id="scr-add-email">
+    <div class="mw-back" onclick="mwGo('settings')">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+      <span id="add-email-back-label">Account</span>
     </div>
-    <p class="mw-sub" id="push-note" style="margin-top:12px;">Real push notifications need the app installed on your phone with permission granted. This button shows what it will feel like.</p>
-    <button class="mw-btn mw-ghost" id="preview-btn" style="margin-top:14px;" onclick="mwPreviewNotif()">Preview notification</button>
+    <div class="mw-spacer"></div>
+    <div class="mw-heart-wrap" style="margin:0 0 6px;"><div class="mw-heart mw-heart-md" id="addemail-heart">
+      <div class="mw-heart-glow"></div>
+      <div class="mw-heart-clip mw-heart-md"><div class="mw-heart-base"></div><div class="mw-heart-tint" style="opacity:.05;"></div><div class="mw-heart-inside"></div><div class="mw-heart-surface"></div></div>
+    </div></div>
+    <h1 class="mw-title" id="add-email-title" style="text-align:center; margin-top:16px; font-size:22px;">Save your climate</h1>
+    <p class="mw-sub" id="add-email-sub" style="text-align:center; margin-top:8px;">Add an email so your days, tags and notes stay safe — even if you switch phones.</p>
+
+    <div style="margin-top:28px;">
+      <button class="mw-provider-btn" onclick="mwMockSignIn('google')">
+        <svg class="mw-provider-icon" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.9 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 3l6-6C34.5 5.1 29.5 3 24 3 12.4 3 3 12.4 3 24s9.4 21 21 21 21-9.4 21-21c0-1.4-.1-2.8-.4-4.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.5 16 18.9 13 24 13c3.1 0 5.8 1.1 8 3l6-6C34.5 5.1 29.5 3 24 3 16.3 3 9.7 7.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 45c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 36.5 26.7 37 24 37c-5.2 0-9.6-3.1-11.3-7.5l-6.5 5C9.6 40.6 16.2 45 24 45z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.1 5.6l6.2 5.2C40.5 36.6 43 30.9 43 24c0-1.4-.1-2.8-.4-4.5z"/></svg>
+        <span id="google-btn-label">Continue with Google</span>
+      </button>
+      <button class="mw-provider-btn" onclick="mwMockSignIn('apple')">
+        <svg class="mw-provider-icon" viewBox="0 0 24 24" fill="currentColor" style="color:var(--ink);"><path d="M16.365 1.43c0 1.14-.468 2.096-1.166 2.836-.746.79-1.938 1.4-2.97 1.32-.135-1.08.414-2.23 1.08-2.94.73-.79 2.01-1.36 3.056-1.216zM20.7 17.42c-.55 1.24-.81 1.79-1.51 2.89-.98 1.53-2.36 3.44-4.07 3.46-1.52.02-1.91-.98-3.97-.97-2.06.01-2.49.99-4.01.97-1.71-.02-3.02-1.75-4.01-3.28-2.75-4.2-3.04-9.13-1.34-11.75.99-1.51 2.55-2.4 4.02-2.4 1.5 0 2.44.98 3.68.98 1.2 0 1.93-.98 3.68-.98 1.36 0 2.8.74 3.83 2.02-3.37 1.85-2.82 6.62.7 8.06z"/></svg>
+        <span id="apple-btn-label">Continue with Apple</span>
+      </button>
+    </div>
+    <div class="mw-account-divider" id="or-divider">or</div>
+    <button class="mw-btn mw-ghost" id="email-btn" onclick="mwGo('email-form')">Continue with email</button>
+    <div class="mw-skip-link" id="skip-link" onclick="mwGo('settings')">Maybe later</div>
+    <div class="mw-spacer"></div>
+  </div>
+
+  <div class="mw-screen" id="scr-email-form">
+    <div class="mw-back" onclick="mwGo('add-email')">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+      <span id="email-form-back-label">Back</span>
+    </div>
+    <h2 class="mw-h2" id="email-form-title" style="margin-top:14px;">Add your email</h2>
+    <p class="mw-sub" id="email-form-sub" style="margin-top:6px;">We will use this to keep your entries safe</p>
+    <input class="mw-email-input" id="email-input" type="email" placeholder="you@example.com" style="margin-top:20px;">
+    <button class="mw-btn" id="email-continue-btn" style="margin-top:14px;" onclick="mwSubmitEmail()">Continue</button>
   </div>
 
   <div class="mw-tabbar" id="mw-tabbar">
@@ -442,8 +534,8 @@
       <span id="tab-archive-label">Archive</span>
     </button>
     <button class="mw-tab" id="tab-settings" onclick="mwTabGo('settings')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-      <span id="tab-settings-label">Settings</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20c0-4 3.5-6 7.5-6s7.5 2 7.5 6"/></svg>
+      <span id="tab-settings-label">Account</span>
     </button>
   </div>
 
@@ -497,9 +589,25 @@ const STRINGS = {
     closingWarm: 'It looks like warmth found its way back by the end.',
     closingHeavy: 'It has been a heavier stretch lately.',
     settings: 'Settings',
+    accountTitle: 'Account',
     tabHome: 'Home',
     tabArchive: 'Archive',
-    tabSettings: 'Settings',
+    tabSettings: 'Account',
+    guestName: 'Guest',
+    guestSub: 'Your data lives on this device',
+    signedInWith: 'Signed in with',
+    saveBannerTitle: 'Save your history',
+    saveBannerSub: 'Add an email so nothing gets lost',
+    signOut: 'Sign out',
+    addEmailTitle: 'Save your climate',
+    addEmailSub: 'Add an email so your days, tags and notes stay safe — even if you switch phones.',
+    continueGoogle: 'Continue with Google',
+    continueApple: 'Continue with Apple',
+    orDivider: 'or',
+    continueEmail: 'Continue with email',
+    maybeLater: 'Maybe later',
+    emailFormSub: 'We will use this to keep your entries safe',
+    continueBtn: 'Continue',
     dailyReminder: 'Daily reminder',
     reminderSub: 'A gentle nudge in the evening',
     remindAt: 'Remind me at',
@@ -550,9 +658,25 @@ const STRINGS = {
     closingWarm: 'Похоже, к концу вернулось тепло.',
     closingHeavy: 'Последнее время было непросто.',
     settings: 'Настройки',
+    accountTitle: 'Аккаунт',
     tabHome: 'Главная',
     tabArchive: 'Архив',
-    tabSettings: 'Настройки',
+    tabSettings: 'Аккаунт',
+    guestName: 'Гость',
+    guestSub: 'Данные хранятся только на этом устройстве',
+    signedInWith: 'Вход через',
+    saveBannerTitle: 'Сохрани свою историю',
+    saveBannerSub: 'Добавь почту, чтобы ничего не потерялось',
+    signOut: 'Выйти',
+    addEmailTitle: 'Сохрани свою погоду',
+    addEmailSub: 'Добавь почту, чтобы дни, теги и заметки не потерялись — даже при смене телефона.',
+    continueGoogle: 'Продолжить с Google',
+    continueApple: 'Продолжить с Apple',
+    orDivider: 'или',
+    continueEmail: 'Продолжить с почтой',
+    maybeLater: 'Может быть позже',
+    emailFormSub: 'Мы будем использовать её, чтобы сохранить твои записи',
+    continueBtn: 'Продолжить',
     dailyReminder: 'Ежедневное напоминание',
     reminderSub: 'Мягкое напоминание вечером',
     remindAt: 'Напомнить в',
@@ -603,9 +727,25 @@ const STRINGS = {
     closingWarm: 'Схоже, наприкінці повернулося тепло.',
     closingHeavy: 'Останнім часом було нелегко.',
     settings: 'Налаштування',
+    accountTitle: 'Акаунт',
     tabHome: 'Головна',
     tabArchive: 'Архів',
-    tabSettings: 'Налаштування',
+    tabSettings: 'Акаунт',
+    guestName: 'Гість',
+    guestSub: 'Дані зберігаються лише на цьому пристрої',
+    signedInWith: 'Вхід через',
+    saveBannerTitle: 'Збережи свою історію',
+    saveBannerSub: 'Додай пошту, щоб нічого не загубилось',
+    signOut: 'Вийти',
+    addEmailTitle: 'Збережи свою погоду',
+    addEmailSub: 'Додай пошту, щоб дні, теги та нотатки не загубились — навіть при зміні телефону.',
+    continueGoogle: 'Продовжити з Google',
+    continueApple: 'Продовжити з Apple',
+    orDivider: 'або',
+    continueEmail: 'Продовжити з поштою',
+    maybeLater: 'Можливо пізніше',
+    emailFormSub: 'Ми використаємо її, щоб зберегти твої записи',
+    continueBtn: 'Продовжити',
     dailyReminder: 'Щоденне нагадування',
     reminderSub: "М'яке нагадування ввечері",
     remindAt: 'Нагадати о',
@@ -876,18 +1016,13 @@ function mwMountHeart(heartId, mood, opts){
 function mwIcon(key, size=26){
   const s = size;
   const icons = {
-    sun: `<defs><radialGradient id="g-sun" cx="35%" cy="30%"><stop offset="0%" stop-color="#FFE1B0"/><stop offset="100%" stop-color="#EF9A4E"/></radialGradient></defs>
-      <circle cx="12" cy="12" r="4.6" fill="url(#g-sun)"/>
-      <g stroke="#EF9A4E" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="1.8" x2="12" y2="4.4"/><line x1="12" y1="19.6" x2="12" y2="22.2"/><line x1="1.8" y1="12" x2="4.4" y2="12"/><line x1="19.6" y1="12" x2="22.2" y2="12"/><line x1="4.6" y1="4.6" x2="6.4" y2="6.4"/><line x1="17.6" y1="17.6" x2="19.4" y2="19.4"/><line x1="4.6" y1="19.4" x2="6.4" y2="17.6"/><line x1="17.6" y1="6.4" x2="19.4" y2="4.6"/></g>`,
-    cloud: `<defs><linearGradient id="g-cloud" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#B7C2EA"/><stop offset="100%" stop-color="#7E8DC0"/></linearGradient></defs>
-      <path d="M6.5 17.5a4 4 0 0 1-.4-8 5.2 5.2 0 0 1 10-1.6 3.8 3.8 0 0 1-.8 9.6z" fill="url(#g-cloud)" stroke="#6B7AB0" stroke-width="1"/>`,
-    rain: `<defs><linearGradient id="g-rain" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#A9D8DF"/><stop offset="100%" stop-color="#5E9CAE"/></linearGradient></defs>
-      <path d="M6.5 13a4 4 0 0 1-.4-8 5.2 5.2 0 0 1 10-1.4 3.8 3.8 0 0 1-.9 7.9z" fill="url(#g-rain)" stroke="#4E8699" stroke-width="1"/>
+    sun: `<circle cx="12" cy="12" r="4.6" fill="#F3AE72"/>
+      <g stroke="#F3AE72" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1.8" x2="12" y2="4.4"/><line x1="12" y1="19.6" x2="12" y2="22.2"/><line x1="1.8" y1="12" x2="4.4" y2="12"/><line x1="19.6" y1="12" x2="22.2" y2="12"/><line x1="4.6" y1="4.6" x2="6.4" y2="6.4"/><line x1="17.6" y1="17.6" x2="19.4" y2="19.4"/><line x1="4.6" y1="19.4" x2="6.4" y2="17.6"/><line x1="17.6" y1="6.4" x2="19.4" y2="4.6"/></g>`,
+    cloud: `<path d="M6.5 17.5a4 4 0 0 1-.4-8 5.2 5.2 0 0 1 10-1.6 3.8 3.8 0 0 1-.8 9.6z" fill="#96A3CC"/>`,
+    rain: `<path d="M6.5 13a4 4 0 0 1-.4-8 5.2 5.2 0 0 1 10-1.4 3.8 3.8 0 0 1-.9 7.9z" fill="#7FAEC0"/>
       <g stroke="#5E9CAE" stroke-width="1.9" stroke-linecap="round"><line x1="8" y1="17.5" x2="6.8" y2="21.2"/><line x1="12" y1="17.5" x2="10.8" y2="21.2"/><line x1="16" y1="17.5" x2="14.8" y2="21.2"/></g>`,
-    storm: `<defs><linearGradient id="g-storm" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#B39FD8"/><stop offset="100%" stop-color="#6E5896"/></linearGradient>
-      <linearGradient id="g-bolt" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFD873"/><stop offset="100%" stop-color="#F0A93E"/></linearGradient></defs>
-      <path d="M6.5 12.6a4 4 0 0 1-.4-7.9 5.2 5.2 0 0 1 10-1.5 3.8 3.8 0 0 1-.8 9.4z" fill="url(#g-storm)" stroke="#6E5896" stroke-width="1"/>
-      <path d="M13 13.5l-3.4 5.6h2.7l-1.7 4.6 4.6-6.2h-2.7z" fill="url(#g-bolt)"/>`,
+    storm: `<path d="M6.5 12.6a4 4 0 0 1-.4-7.9 5.2 5.2 0 0 1 10-1.5 3.8 3.8 0 0 1-.8 9.4z" fill="#8175A0"/>
+      <path d="M13 13.5l-3.4 5.6h2.7l-1.7 4.6 4.6-6.2h-2.7z" fill="#F0A93E"/>`,
     fog: `<defs><linearGradient id="g-fog" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#C8B9CE"/><stop offset="100%" stop-color="#9A899E"/></linearGradient></defs>
       <g stroke="url(#g-fog)" stroke-width="2.1" stroke-linecap="round"><line x1="3.5" y1="8" x2="20.5" y2="8"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="3.5" y1="16" x2="20.5" y2="16"/></g>`,
     rainbow: `<path d="M3 16a9 9 0 0 1 18 0" fill="none" stroke="#E39BC0" stroke-width="2.1" stroke-linecap="round"/>
@@ -908,7 +1043,9 @@ function mwIcon(key, size=26){
 const state = {
   screen:'welcome', selectedMood:null, entries:[], archiveView:'week',
   editingToday:false, activeTags:[], reminderOn:false, searching:false, activeSearchTags:[],
-  lang:'en', lastDetailEntry:null, lastDetailDate:null
+  lang:'en', lastDetailEntry:null, lastDetailDate:null,
+  viewMonth: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
+  account: { linked:false, email:null, name:null, provider:null }
 };
 
 const STORAGE_KEY = 'moodWeatherData';
@@ -1020,18 +1157,28 @@ function mwApplyStaticStrings(){
   document.getElementById('detail-back-label').textContent = t('archive');
   document.getElementById('season-back-label').textContent = t('archive');
   document.getElementById('season-title').textContent = t('yourSeason');
-  document.getElementById('settings-back-label').textContent = t('back');
-  document.getElementById('settings-title').textContent = t('settings');
+  document.getElementById('settings-title').textContent = t('accountTitle');
   document.getElementById('tab-home-label').textContent = t('tabHome');
   document.getElementById('tab-archive-label').textContent = t('tabArchive');
   document.getElementById('tab-settings-label').textContent = t('tabSettings');
   document.getElementById('language-label').textContent = t('language');
-  document.getElementById('reminder-label').textContent = t('dailyReminder');
-  document.getElementById('reminder-sub').textContent = t('reminderSub');
-  document.getElementById('remind-at-label').textContent = t('remindAt');
-  document.getElementById('push-note').textContent = t('pushNote');
-  document.getElementById('preview-btn').textContent = t('previewNotif');
   document.getElementById('notif-text').textContent = t('notifText');
+  document.getElementById('save-banner-title').textContent = t('saveBannerTitle');
+  document.getElementById('save-banner-sub').textContent = t('saveBannerSub');
+  document.getElementById('signout-link').textContent = t('signOut');
+  document.getElementById('add-email-back-label').textContent = t('accountTitle');
+  document.getElementById('add-email-title').textContent = t('addEmailTitle');
+  document.getElementById('add-email-sub').textContent = t('addEmailSub');
+  document.getElementById('google-btn-label').textContent = t('continueGoogle');
+  document.getElementById('apple-btn-label').textContent = t('continueApple');
+  document.getElementById('or-divider').textContent = t('orDivider');
+  document.getElementById('email-btn').textContent = t('continueEmail');
+  document.getElementById('skip-link').textContent = t('maybeLater');
+  document.getElementById('email-form-back-label').textContent = t('back');
+  document.getElementById('email-form-title').textContent = t('addEmailTitle');
+  document.getElementById('email-form-sub').textContent = t('emailFormSub');
+  document.getElementById('email-continue-btn').textContent = t('continueBtn');
+  mwRenderAccount();
   document.getElementById('archive-sub').textContent = state.searching ? t('searchByWords') : t('tapDay');
 }
 
@@ -1041,12 +1188,13 @@ function mwGo(screen){
   state.screen = screen;
   if(screen==='today') mwRenderToday();
   if(screen==='archive'){ mwUpdateDots(); mwCloseSearch(); }
+  if(screen==='settings') mwRenderAccount();
   document.getElementById('mw-phone').setAttribute('data-mood', mwCurrentBgMood());
   mwSyncTabbar(screen);
 }
 
 function mwSyncTabbar(screen){
-  const tabOf = { welcome:'home', today:'home', confirm:'home', archive:'archive', detail:'archive', season:'archive', settings:'settings' };
+  const tabOf = { welcome:'home', today:'home', confirm:'home', archive:'archive', detail:'archive', season:'archive', settings:'settings', 'add-email':'settings', 'email-form':'settings' };
   const active = tabOf[screen] || 'home';
   document.getElementById('tab-home').classList.toggle('active', active==='home');
   document.getElementById('tab-archive').classList.toggle('active', active==='archive');
@@ -1243,9 +1391,23 @@ function mwSetView(view){
   document.getElementById('toggle-week').classList.toggle('on', view==='week');
   document.getElementById('toggle-month').classList.toggle('on', view==='month');
   document.getElementById('archive-grid').style.display = view==='week' ? 'grid' : 'none';
-  document.getElementById('archive-grid-month').style.display = view==='month' ? 'grid' : 'none';
+  document.getElementById('month-view-block').style.display = view==='month' ? 'block' : 'none';
   document.getElementById('month-actions').style.display = view==='month' ? 'flex' : 'none';
   document.getElementById('season-btn').style.display = view==='month' ? 'none' : 'block';
+  if(view==='month'){
+    const now = new Date();
+    state.viewMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+  }
+  mwRenderArchive();
+}
+
+function mwShiftMonth(delta){
+  const d = new Date(state.viewMonth);
+  d.setMonth(d.getMonth()+delta);
+  const now = new Date();
+  const capped = new Date(now.getFullYear(), now.getMonth(), 1);
+  if(d > capped) return;
+  state.viewMonth = d;
   mwRenderArchive();
 }
 
@@ -1284,9 +1446,13 @@ function mwRenderArchive(){
   } else {
     const grid = document.getElementById('archive-grid-month');
     grid.innerHTML = '';
-    const year = today.getFullYear(), month = today.getMonth();
+    const year = state.viewMonth.getFullYear(), month = state.viewMonth.getMonth();
     const daysInMonth = new Date(year, month+1, 0).getDate();
     const firstDow = new Date(year, month, 1).getDay();
+    document.getElementById('month-nav-label').textContent = MONTHS_I18N[state.lang][month] + ' ' + year;
+    const now = new Date();
+    const isCurrentMonth = (year===now.getFullYear() && month===now.getMonth());
+    document.getElementById('month-next-btn').classList.toggle('disabled', isCurrentMonth);
     for(let i=0;i<firstDow;i++){
       const empty = document.createElement('div');
       empty.className = 'mw-day-cell empty';
@@ -1480,16 +1646,68 @@ function mwRenderSeason(){
   });
 }
 
-/* ---------- SETTINGS ---------- */
-function mwToggleReminder(){
-  state.reminderOn = !state.reminderOn;
-  document.getElementById('reminder-switch').classList.toggle('on', state.reminderOn);
-  document.getElementById('reminder-time-row').style.display = state.reminderOn ? 'flex' : 'none';
+/* ---------- ACCOUNT ---------- */
+function mwInitials(name, email){
+  const src = (name || '').trim();
+  if(src){
+    const parts = src.split(/\s+/).filter(Boolean);
+    if(parts.length>=2) return (parts[0][0]+parts[1][0]).toUpperCase();
+    return src.slice(0,2).toUpperCase();
+  }
+  if(email){ return email.slice(0,2).toUpperCase(); }
+  return '';
 }
-function mwPreviewNotif(){
-  const banner = document.getElementById('mw-notif');
-  banner.classList.add('show');
-  setTimeout(()=> banner.classList.remove('show'), 3200);
+
+function mwRenderAccount(){
+  const avatar = document.getElementById('account-avatar');
+  const nameEl = document.getElementById('account-name');
+  const subEl = document.getElementById('account-sub');
+  const banner = document.getElementById('save-banner');
+  const signout = document.getElementById('signout-link');
+  if(state.account.linked){
+    avatar.classList.remove('guest');
+    avatar.innerHTML = mwInitials(state.account.name, state.account.email);
+    nameEl.textContent = state.account.name || state.account.email;
+    const providerLabel = state.account.provider ? (t('signedInWith') + ' ' + state.account.provider) : state.account.email;
+    subEl.textContent = state.account.name ? state.account.email : providerLabel;
+    banner.style.display = 'none';
+    signout.style.display = 'block';
+  } else {
+    avatar.classList.add('guest');
+    avatar.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.5-6 8-6s8 2 8 6"/></svg>';
+    nameEl.textContent = t('guestName');
+    subEl.textContent = t('guestSub');
+    banner.style.display = 'flex';
+    signout.style.display = 'none';
+  }
+}
+
+function mwAccountHeadClick(){
+  if(!state.account.linked) mwGo('add-email');
+}
+
+function mwMockSignIn(provider){
+  const mock = provider==='google'
+    ? { name:'Alina K', email:'alina.k@gmail.com' }
+    : { name:'Alina K', email:'alina.k@icloud.com' };
+  state.account = { linked:true, email:mock.email, name:mock.name, provider: provider==='google' ? 'Google' : 'Apple' };
+  mwRenderAccount();
+  mwGo('settings');
+}
+
+function mwSubmitEmail(){
+  const input = document.getElementById('email-input');
+  const val = (input.value || '').trim();
+  if(!val || !val.includes('@')) return;
+  state.account = { linked:true, email:val, name:null, provider:'Email' };
+  input.value = '';
+  mwRenderAccount();
+  mwGo('settings');
+}
+
+function mwSignOut(){
+  state.account = { linked:false, email:null, name:null, provider:null };
+  mwRenderAccount();
 }
 
 const dotScreens = ['welcome','today','archive'];
@@ -1508,15 +1726,13 @@ if (typeof window !== 'undefined') {
   window.mwExportMonth = mwExportMonth;
   window.mwRenderSeason = mwRenderSeason;
   window.mwOnNoteInput = mwOnNoteInput;
-  window.mwPreviewNotif = mwPreviewNotif;
-  window.mwToggleReminder = mwToggleReminder;
   window.mwTabGo = mwTabGo;
 }
 
 /* ---------- INIT ---------- */
 /* ---------- RIPPLE (soft wave on tap) ---------- */
 function mwRippleInit(){
-  const SELECTOR = '.mw-btn, .mw-mood-btn, .mw-tag, .mw-tab, .mw-day-cell, .mw-icon-btn, .mw-toggle button';
+  const SELECTOR = '.mw-btn, .mw-mood-btn, .mw-tag, .mw-tab, .mw-day-cell, .mw-icon-btn, .mw-toggle button, .mw-provider-btn, .mw-save-banner, .mw-account-head, .mw-month-nav-btn';
   document.addEventListener('pointerdown', (e)=>{
     const el = e.target.closest(SELECTOR);
     if(!el || el.disabled) return;
@@ -1547,6 +1763,7 @@ mwLoadState();
 mwSetLang(state.lang);
 mwMountHeart('welcome-heart', null, { flourish:false });
 mwMountHeart('splash-heart', null, { flourish:false });
+mwMountHeart('addemail-heart', null, { flourish:false });
 setTimeout(()=>{
   const splash = document.getElementById('mw-splash');
   if(splash){
